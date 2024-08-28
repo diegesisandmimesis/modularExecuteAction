@@ -21,29 +21,36 @@
 
 #include "modularExecuteAction.h"
 
-versionInfo: GameID
-        name = 'modularExecuteAction Library Demo Game'
-        byline = 'Diegesis & Mimesis'
-        desc = 'Demo game for the modularExecuteAction library. '
-        version = '1.0'
-        IFID = '12345'
-	showAbout() {
-		"This is a simple test game that demonstrates the features
-		of the modularExecuteAction library.
-		<.p>
-		Consult the README.txt document distributed with the library
-		source for a quick summary of how to use the library in your
-		own games.
-		<.p>
-		The library source is also extensively commented in a way
-		intended to make it as readable as possible. ";
+versionInfo: GameID;
+gameMain: GameMainDef initialPlayerChar = me;
+
+startRoom: Room 'Void'
+	"This is a featureless void.  The other room is to the north. "
+	north = otherRoom
+;
++me: Person;
++alice: Person 'alice' 'Alice'
+	"She looks like the first person you'd turn to with a problem. "
+	isHer = true
+	isProperName = true
+	obeyCommand(foo, bar) {
+aioSay('\nalice.obeyCommand()\n ');
+		return(inherited(foo, bar));
 	}
 ;
-gameMain: GameMainDef
-	initialPlayerChar = me
-	inlineCommand(cmd) { "<b>&gt;<<toString(cmd).toUpper()>></b>"; }
-	printCommand(cmd) { "<.p>\n\t<<inlineCommand(cmd)>><.p> "; }
+++DefaultCommandTopic
+	topicResponse() {
+		"Foozle. ";
+	}
+;
+++CommandTopic @TakeAction
+	topicResponse() {
+		"Take topic response. ";
+	}
 ;
 
-startRoom: Room 'Void' "This is a featureless void.";
-+me: Person;
+otherRoom: Room 'Other Room'
+	"This is the other room.  The void is to the south. "
+	south = startRoom
+;
++pebble: Thing '(small) (round) pebble' 'pebble' "A small, round pebble. ";
