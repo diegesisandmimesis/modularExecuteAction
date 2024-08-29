@@ -33,19 +33,17 @@ startRoom: Room 'Void'
 	"She looks like the first person you'd turn to with a problem. "
 	isHer = true
 	isProperName = true
-	obeyCommand(foo, bar) {
-aioSay('\nalice.obeyCommand()\n ');
-		return(inherited(foo, bar));
-	}
 ;
 ++DefaultCommandTopic
 	topicResponse() {
-		"Foozle. ";
+		defaultReport('<q>This is my default topic response,</q>
+			Alice says. ');
 	}
 ;
 ++CommandTopic @TakeAction
 	topicResponse() {
-		"Take topic response. ";
+		defaultReport('<q>This is my \'take\' topic response,</q>
+			Alice says. ');
 	}
 ;
 
