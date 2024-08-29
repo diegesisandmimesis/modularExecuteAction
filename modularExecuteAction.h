@@ -2,5 +2,4 @@
 // modularExecuteAction.h
 //
 
-// Uncomment to enable debugging options.
-//#define __DEBUG_MODULAR_EXECUTE_ACTION
+#define MODULAR_EXECUTE_ACTION_H
