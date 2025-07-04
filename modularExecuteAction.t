@@ -59,6 +59,9 @@ class ExecuteActionState: object
 		countsAsIssuerTurn = c;
 		action = a;
 	}
+
+	// Debugging stub.
+	_debugState() {}
 ;
 
 // Global singleton.
